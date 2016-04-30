@@ -1,5 +1,20 @@
+var quakeData = null;
+
+var worldMap = {
+  svg: null,
+  init: function(){
+    worldMap.svg = new Datamap({
+      element: $(".map")[0]
+    });
+  },
+  drawBubbles: function(){
+  }
+}
+
 $().ready(function(){
-  var map = new Datamap({
-    element: $(".map")[0]
+  d3.json("../assets/dataset.json", function(err, data){
+    quakeData = data;
   });
+
+  worldMap.init();
 });
