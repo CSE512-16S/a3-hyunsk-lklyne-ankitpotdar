@@ -5,7 +5,12 @@ html, body{
     height: 100%;
 }
 
-
+.map{
+    position: relative;
+    height: 300px;
+    width: 700px;
+    margin: 0 auto;
+}
 
 
 
