@@ -16,7 +16,10 @@ function normalizeFeatures(data){
 }
 
 $().ready(function(){
-  d3.json("../assets/dataset.json", function(err, data){
+  d3.json("../assets/histogram/countData-4months-sorted.json", function(err, data){
+    timelineHistogram(data, ".timeline");
+  });
+  d3.json("../assets/dataset-4months.json", function(err, data){
     var features;
     features = normalizeFeatures(data);
     map.init(features);
