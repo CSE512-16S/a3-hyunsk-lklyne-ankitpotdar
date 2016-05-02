@@ -10,6 +10,8 @@ Ankit Potdar ankitpotdar@uw
 
 ### 2016 Earthquake Explorer
 
+![summary](https://github.com/CSE512-16S/a3-hyunsk-lklyne-ankitpotdar/blob/dev/readme_assets/final%20visualization.png)
+
 We spent a substantial amount of time tracking down a clean dataset that would afford interesting interactions. Among these, we explored data from New York’s stop and frisk policy, various data sets from NASA, as well as state information about building codes and safety. We ultimately settled on a dataset from USGS that included a complete list of earthquakes, including their magnitude and location. We felt this dataset lent itself particularly well to interaction because there are multiple parts of its story. One of these is a broad overview that depicts general trends. In viewing all recent earthquakes, the viewer can discern the location of tectonic plates, as well as areas that are particularly prone to seismic events. As this view is conveying a lot of information at once, the second part of the story relates to specific magnitudes and date ranges. By allowing the viewer to focus in on certain date ranges or magnitudes, the data can be filtered to a point where earthquakes are individually visible and explorable. Without an interaction model, depicting both specific earthquakes and general trends would have been difficult. 
 
 
@@ -41,6 +43,31 @@ Aside from some pruning, our final application is largely similar to our initial
 
 ### Development Process
 Development of the application took about 40 man-hours, evenly split between team members. Exploration and discussion of datasets took much longer than expected and included several meetings. Each team member independently found datasets and presented their strengths in quality and in potential for visualization interactions. Once we agreed upon the dataset, the design and development process went quickly.
+
+
+![summary](https://github.com/CSE512-16S/a3-hyunsk-lklyne-ankitpotdar/blob/dev/readme_assets/map%20markerboard.jpg)
+Map Ideation
+  
+  
+![summary](https://github.com/CSE512-16S/a3-hyunsk-lklyne-ankitpotdar/blob/dev/readme_assets/magnitude%20slider%20markerboard.jpg)
+Magnitude Slider Ideation
+  
+  
+![summary](https://github.com/CSE512-16S/a3-hyunsk-lklyne-ankitpotdar/blob/dev/readme_assets/tableauExplorationMap.png)  
+Tableau Map Data Exploration
+  
+  
+![summary](https://github.com/CSE512-16S/a3-hyunsk-lklyne-ankitpotdar/blob/dev/readme_assets/tableauExplorationTimeline.png)  
+Tableau Histogram Data Exploration
+  
+  
+![summary](https://github.com/CSE512-16S/a3-hyunsk-lklyne-ankitpotdar/blob/dev/readme_assets/color-style-exploration.png)  
+Magnitude Color Encoding and Typography Exploration
+  
+  
+![summary](https://github.com/CSE512-16S/a3-hyunsk-lklyne-ankitpotdar/blob/dev/readme_assets/earthquake-wip-1.png)
+Earthquake Explorer - In Progress
+  
 
 * All group members began by searching for interesting datasets and loading them into Tableau to find interesting depictions of the data. 
 * Once we had settled on a dataset, we discussed different visualization models and then made rudimentary explorations with Tableau. . 
