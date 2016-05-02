@@ -1,3 +1,5 @@
+var features = null;
+
 function normalizeFeatures(data){
   var features = []
   _.forEach(data.features, function(val, i){
@@ -22,8 +24,27 @@ $().ready(function(){
     timelineHistogram(data, ".timeline");
   });
   d3.json("../assets/dataset-4months.json", function(err, data){
-    var features;
     features = normalizeFeatures(data);
     map.init(features);
   });
+
+
+  /*Take this out -- for testing only*/
+  $('#startDate').on("change",function(){
+    var tempStart = moment("2016-01-01").add($(this).val(),'days');
+    var tempend =  moment(tempStart).add(30,'days');
+    map.update(dateFilter(features,tempStart.toDate(),tempend.toDate()));
+
+  });
+
 });
+
+
+function dateFilter(dataset,startDate, endDate){
+  startDate = moment.isDate(startDate)? startDate : new Date();
+  endDate = moment.isDate(endDate)? endDate : new Date();
+  return  _.filter(dataset, function(val) {
+    return val.time.getTime() >=startDate.getTime() && val.time.getTime() <=endDate.getTime();
+  });
+}
+
