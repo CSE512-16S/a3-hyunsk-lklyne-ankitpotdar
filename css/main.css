@@ -3,8 +3,12 @@ html, body{
   height: 100%;
 }
 
-h2 {
+h1 {
     text-align: center;
+    font-weight: 900;
+    font-family: "Playfair Display", serif;
+    letter-spacing: 0.02em;
+
 }
 
 .map{
@@ -38,7 +42,7 @@ h2 {
 }
 
 circle.datamaps-bubble {
-    fill: rgba(189,0,38,0.2) !important;
+    fill: rgba(189,0,38,0.25) !important;
 }
 
 .bar {
