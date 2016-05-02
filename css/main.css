@@ -58,7 +58,18 @@ circle.datamaps-bubble {
   shape-rendering: crispEdges;
 }
 
+.datamaps-subunits {
+    transition: opacity .25s ease-in-out;
+    -moz-transition: opacity .25s ease-in-out;
+    -webkit-transition: opacity .25s ease-in-out;
+}
 
+.opacity-toggle {
+    opacity: 0;
+}
+.container {
+    display: flex;
+}
 .controls {
     width: 800px;
     height: 200px;
