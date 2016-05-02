@@ -43,45 +43,63 @@ var timelineHistogram = function(features, selector){
     .attr("height", outerHeight)
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-  var g = svg.append("g")
+  var context = svg.append("g")
+    .attr("class", "context")
     .attr("transform", "translate(" + padding.left + "," + padding.top + ")");
 
-  svg.append("rect")
-    .attr("class", "outer")
-    .attr("width", innerWidth)
-    .attr("height", innerHeight);
-  var graph = g.append("rect")
-    .attr("class", "inner")
-    .attr("width", width)
-    .attr("height", height);
-  g.append("g")
+  context.append("g")
     .attr("class", "x axis")
     .attr("transform", "translate(0," + height + ")")
     .call(xAxis);
-  g.append("g")
+  context.append("g")
     .attr("class", "y axis")
     .call(yAxis);
 
+  // brush
+  var area = d3.svg.area()
+    .interpolate("monotone")
+    .x(function(d) { return x(getTime(d)); })
+    .y0(height)
+    .y1(function(d) { return y(getCount(d)); });
 
+  var brush = d3.svg.brush()
+    .x(xScale2)
+    .on("brushend", brushEnded);
+
+  function brushEnded() {
+    // xScale.domain(brush.empty() ? xScale2.domain() : brush.extent());
+    // debugger
+  }
+
+
+
+  // draw
   var draw = function(){
-    svg.selectAll("rect")
+    context.selectAll("rect")
       .data(features)
       .enter()
       .append("rect")
       .attr({
         class: "bar",
         x: function(d, i) {
-          return i* (innerWidth/features.length);
+          return xScale(getDate(d));
         },
         y: function(d) {
           return yScale(getCount(d));
         },
-        width: innerWidth / features.length - barMargin,
+        width: width / features.length - barMargin,
         height: function(d) {
           return yScale(0) - yScale(getCount(d));
         }
         // fill: function(d) { return "hsl(0, 0%,"+ cScale(d.nkill) + "%)";}
       });
+
+    context.append("g")
+      .attr("class", "x brush")
+      .call(brush)
+      .selectAll("rect")
+      .attr("y", 0)
+      .attr("height", height);
   }
 
   draw();
