@@ -57,7 +57,7 @@ var dataTransformer = {
     var keys = Object.keys(aggregate);
     for(var i = 0;i< keys.length;i++){
       var temp = {};
-      temp.time = moment(keys[i]).toDate();
+      temp.time = moment(parseInt(keys[i])).toDate();
       temp.count = aggregate[keys[i]];
       aggregateArray.push(temp);
     }
