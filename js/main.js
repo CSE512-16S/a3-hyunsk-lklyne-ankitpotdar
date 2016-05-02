@@ -1,10 +1,12 @@
-var features = null;
+
 
 var timeSlider = null;
 var magSlider = null;
 
 
 var dataTransformer = {
+  
+  _features: null,
 
   normalizeFeatures: function (data){
   var features = []
@@ -22,6 +24,8 @@ var dataTransformer = {
     feature.time =moment(val.properties.time).startOf('day').toDate();
     features.push(feature);
   });
+
+    this._features = features;
 
   return features;
 },
@@ -69,12 +73,10 @@ var dataTransformer = {
 
 
 $().ready(function(){
-  d3.json("../assets/histogram/countData-4months-sorted.json", function(err, data){
-    timelineHistogram(data, ".timeline");
-  });
+
   d3.json("../assets/dataset-4months.json", function(err, data){
-    features = dataTransformer.normalizeFeatures(data);
-    map.init(features);
+    var transformedData = dataTransformer.normalizeFeatures(data);
+    map.init(transformedData);
   });
   initControls();
 
