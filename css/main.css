@@ -54,3 +54,8 @@ circle.datamaps-bubble {
   fill-opacity: .125;
   shape-rendering: crispEdges;
 }
+
+.controls {
+    width: 50%;
+    margin: 0 auto;
+}
