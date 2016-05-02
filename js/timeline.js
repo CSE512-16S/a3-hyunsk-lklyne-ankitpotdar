@@ -69,6 +69,7 @@ var timelineHistogram = function(features, selector){
       .enter()
       .append("rect")
       .attr({
+        class: "bar",
         x: function(d, i) {
           return i* (innerWidth/features.length);
         },
