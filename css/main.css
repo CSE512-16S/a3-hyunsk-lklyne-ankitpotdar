@@ -25,7 +25,7 @@ h1 {
   height: 100px;
   width: 800px;
   margin: 0 auto;
-    margin-top: 10px;
+    margin-top: 1em;
 }
 
 .outer,
@@ -58,14 +58,28 @@ circle.datamaps-bubble {
   shape-rendering: crispEdges;
 }
 
-.container {
-    display: flex;
-}
+
 .controls {
     width: 800px;
+    height: 200px;
     margin: 0 auto;
 }
 
+.flex {
+    display: flex;
+}
 
+.map-checkbox {
+    font-size: 1em;
+    flex-grow: 1;
+    display: none;
+}
 
+.mag-slider {
+    flex-grow: 3;
+    margin: 2em;
+}
 
+.date-slider {
+    display: none;
+}
