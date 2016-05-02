@@ -1,6 +1,7 @@
 var timeSlider = null;
 var magSlider = null;
 var timeline = null;
+var showMap = false;
 
 
 var dataTransformer = {
@@ -101,35 +102,13 @@ function initControls() {
   var magStart = null;
   var magEnd = null;
 
-  timeSlider = $('.date-slider')[0];
-  noUiSlider.create(timeSlider, {
-    start: [20, 80],
-    step: 1,
-    range: {
-      'min': [0],
-      'max': [120]
-    }
-  });
-
-  timeSlider.noUiSlider.on('change', function () {
-    dateStart = moment("2016-01-01").add(timeSlider.noUiSlider.get()[0], 'days').toDate();
-    dateEnd = moment("2016-01-01").add(timeSlider.noUiSlider.get()[1], 'days').toDate();
-    magStart = magSlider.noUiSlider.get()[0];
-    magEnd = magSlider.noUiSlider.get()[1];
-    dataTransformer.computeAllFilters({
-      dateStart: dateStart,
-      dateEnd: dateEnd,
-      magStart: magStart,
-      magEnd: magEnd
-    });
-
-  });
-
+  
 
   magSlider = $('.mag-slider')[0];
   noUiSlider.create(magSlider, {
     start: [2.5, 10],
     step: 0.1,
+    tooltips: true,
     range: {
       'min': [0],
       'max': [10]
@@ -137,8 +116,6 @@ function initControls() {
   });
 
   magSlider.noUiSlider.on('change', function () {
-    dateStart = moment("2016-01-01").add(timeSlider.noUiSlider.get()[0], 'days').toDate();
-    dateEnd = moment("2016-01-01").add(timeSlider.noUiSlider.get()[1], 'days').toDate();
     magStart = magSlider.noUiSlider.get()[0];
     magEnd = magSlider.noUiSlider.get()[1];
     dataTransformer.computeAllFilters({
@@ -148,6 +125,13 @@ function initControls() {
       magEnd: magEnd
     });
   });
+
+  $('#showMap').on('change',function(){
+    console.log ($(this).checked);
+    d3.select('.datamaps-subunits').classed('opacity-toggle',$(this).is(':checked'));
+});
+
+
 }
 
 
