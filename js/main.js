@@ -1,6 +1,7 @@
 var timeSlider = null;
 var magSlider = null;
 var timeline = null;
+var showMap = false;
 
 
 var dataTransformer = {
@@ -143,6 +144,13 @@ function initControls() {
       magEnd: magEnd
     });
   });
+
+  $('#showMap').on('change',function(){
+    console.log ($(this).checked);
+    d3.select('.datamaps-subunits').classed('opacity-toggle',$(this).is(':checked'));
+});
+
+
 }
 
 
