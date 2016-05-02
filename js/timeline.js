@@ -67,8 +67,16 @@ var timelineHistogram = function(features, selector){
     .on("brushend", brushEnded);
 
   function brushEnded() {
-    // xScale.domain(brush.empty() ? xScale2.domain() : brush.extent());
-    // debugger
+    var opt = {};
+    if (brush.empty()){
+      opt.dateStart = null;
+      opt.dateEnd = null;
+    }else{
+      var arr = brush.extent();
+      opt.dateStart = arr[0];
+      opt.dateEnd = arr[1];
+    }
+    dataTransformer.computeAllFilters(opt);
   }
 
 
@@ -84,14 +92,16 @@ var timelineHistogram = function(features, selector){
         x: function(d, i) {
           return xScale(getDate(d));
         },
+        width: width / features.length - barMargin
+        // fill: function(d) { return "hsl(0, 0%,"+ cScale(d.nkill) + "%)";}
+      })
+      .attr({
         y: function(d) {
           return yScale(getCount(d));
         },
-        width: width / features.length - barMargin,
         height: function(d) {
           return yScale(0) - yScale(getCount(d));
         }
-        // fill: function(d) { return "hsl(0, 0%,"+ cScale(d.nkill) + "%)";}
       });
 
     context.append("g")
@@ -105,6 +115,20 @@ var timelineHistogram = function(features, selector){
   draw();
 
   return{
+    update: function(updatedFeatures){
+      // features = updatedFeatures;
+      context.selectAll("rect")
+        .data(updatedFeatures)
+        .transition().duration(500)
+        .attr({
+          y: function(d) {
+            return yScale(getCount(d));
+          },
+          height: function(d) {
+            return yScale(0) - yScale(getCount(d));
+          }
+        });
 
+    }
   }
 }

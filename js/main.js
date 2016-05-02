@@ -7,10 +7,11 @@ var dataTransformer = {
 
   _features: null,
   _currentOpt: {},
+  _aggregateDefault: {},
 
 
   normalizeFeatures: function (data) {
-    var features = []
+    var features = [];
     _.forEach(data.features, function (val, i) {
       var feature = val.properties;
       feature.id = val.id;
@@ -24,6 +25,8 @@ var dataTransformer = {
       //doing startOf to have common grouping by date.
       feature.time = moment(val.properties.time).startOf('day').toDate();
       features.push(feature);
+
+      dataTransformer._aggregateDefault[feature.time.getTime()] = 0;
     });
 
     this._features = features;
@@ -41,6 +44,7 @@ var dataTransformer = {
     }
     if (this._currentOpt.magStart != null){
       filteredData = this.magFilter(filteredData, this._currentOpt.magStart, this._currentOpt.magEnd);
+      timeline.update(this.countByDate(filteredData));
     }
     map.update(filteredData);
   },
@@ -62,11 +66,12 @@ var dataTransformer = {
   },
 
   countByDate: function (dataset) {
+
     var aggregateArray = [];
     var aggregate = _.countBy(dataset, function (val) {
       return val.time.getTime();
     });
-    var keys = Object.keys(aggregate);
+    var keys = Object.keys(this._aggregateDefault);
     for (var i = 0; i < keys.length; i++) {
       var temp = {};
       temp.time = moment(parseInt(keys[i])).toDate();
