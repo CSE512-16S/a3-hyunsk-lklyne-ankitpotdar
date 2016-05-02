@@ -62,21 +62,20 @@ var timelineHistogram = function(features, selector){
     .attr("class", "y axis")
     .call(yAxis);
 
-
   var draw = function(){
-    svg.selectAll("rect")
+    g.selectAll("rect")
       .data(features)
       .enter()
       .append("rect")
       .attr({
         class: "bar",
         x: function(d, i) {
-          return i* (innerWidth/features.length);
+          return xScale(getDate(d));
         },
         y: function(d) {
           return yScale(getCount(d));
         },
-        width: innerWidth / features.length - barMargin,
+        width: width / features.length - barMargin,
         height: function(d) {
           return yScale(0) - yScale(getCount(d));
         }
