@@ -28,7 +28,7 @@ var timelineHistogram = function(features, selector){
     .range([0, width]);
   var yScale = d3.scale.linear()
     .domain(count_domain)
-    .range([0, height])
+    .range([height, 0])
     .nice();
   var xAxis = d3.svg.axis()
     .scale(xScale)
@@ -73,11 +73,11 @@ var timelineHistogram = function(features, selector){
           return i* (innerWidth/features.length);
         },
         y: function(d) {
-          return innerHeight - yScale(getCount(d));
+          return yScale(getCount(d));
         },
         width: innerWidth / features.length - barMargin,
         height: function(d) {
-          return yScale(getCount(d));
+          return yScale(0) - yScale(getCount(d));
         }
         // fill: function(d) { return "hsl(0, 0%,"+ cScale(d.nkill) + "%)";}
       });
