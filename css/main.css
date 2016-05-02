@@ -3,17 +3,21 @@ html, body{
   height: 100%;
 }
 
+h2 {
+    text-align: center;
+}
+
 .map{
   position: relative;
-  height: 550px;
-  width: 1200px;
+  height: 400px;
+  width: 800px;
   margin: 0 auto;
 }
 
 .timeline{
   position: relative;
-  height: 300px;
-  width: 1200px;
+  height: 100px;
+  width: 800px;
   margin: 0 auto;
 }
 
@@ -34,5 +38,9 @@ html, body{
 }
 
 circle.datamaps-bubble {
-    fill: rgba(68,40,191,0.2) !important;
+    fill: rgba(189,0,38,0.2) !important;
+}
+
+.bar {
+    fill: rgba(189,0,38,1);
 }
