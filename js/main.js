@@ -1,5 +1,6 @@
 var timeSlider = null;
 var magSlider = null;
+var timeline = null;
 
 
 var dataTransformer = {
@@ -80,7 +81,9 @@ var dataTransformer = {
 $().ready(function () {
   d3.json("../assets/dataset-4months.json", function (err, data) {
     var transformedData = dataTransformer.normalizeFeatures(data);
+    var group = dataTransformer.countByDate(transformedData);
     map.init(transformedData);
+    timeline = timelineHistogram(group, ".timeline");
   });
   initControls();
 
