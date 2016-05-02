@@ -1,42 +1,38 @@
 html, body{
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .map{
-    position: relative;
-    height: 600px;
-    width: 1200px;
-    margin: 0 auto;
+  position: relative;
+  height: 550px;
+  width: 1200px;
+  margin: 0 auto;
 }
 
 .timeline{
-    position: relative;
-    height: 200px;
-    width: 1200px;
-    margin: 0 auto;
+  position: relative;
+  height: 300px;
+  width: 1200px;
+  margin: 0 auto;
 }
 
 .outer,
 .inner {
-    shape-rendering: crispEdges;
+  fill: none;
+  shape-rendering: crispEdges;
 }
 
-.outer {
-    fill: none;
-    stroke: #000;
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #eaeaea;
 }
 
-.inner {
-  fill: #ccc;
-  stroke: #000;
-  stroke-dasharray: 3, 4;
+.tick{
+  font-size: 10px;
 }
 
 circle.datamaps-bubble {
     fill: rgba(68,40,191,0.2) !important;
 }
-
-
-
-

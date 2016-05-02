@@ -2,8 +2,9 @@ var timelineHistogram = function(features, selector){
 
   // setup
   var $el = $(selector);
-  var margin = {top:0, right:15, bottom: 20, left: 15},
-    padding = {top: 60, right: 60, bottom: 60, left: 60},
+  var margin = {top:0, right:10, bottom: 20, left: 15},
+    barMargin = 1,
+    padding = {top: 5, right: 20, bottom: 5, left: 20},
     outerWidth = $el.width(),
     outerHeight = $el.height(),
     innerWidth = outerWidth - margin.left - margin.right,
@@ -11,28 +12,32 @@ var timelineHistogram = function(features, selector){
     width = innerWidth - padding.left - padding.right,
     height = innerHeight - padding.top - padding.bottom;
 
+  // add scales
   function getDate(d){
-    return d.dateformat_date;
+    return moment(d.dateformat_date, "MM/DD/YYYY").toDate();
   }
   function getCount(d){
     return d.quakeCount;
   }
 
-  var time_scale = [d3.min(features, getDate), d3.max(features, getDate)];
-  var count_scale = [d3.min(features, getCount), d3.max(features, getCount)];
+  var time_domain = [d3.min(features, getDate), d3.max(features, getDate)];
+  var count_domain = [0, d3.max(features, getCount)];
 
-  var x = d3.time.scale()
-    .domain(time_scale)
+  var xScale = d3.time.scale()
+    .domain(time_domain)
     .range([0, width]);
-  var y = d3.scale.linear()
-    .domain(count_scale)
-    .range([0, height]);
+  var yScale = d3.scale.linear()
+    .domain(count_domain)
+    .range([0, height])
+    .nice();
   var xAxis = d3.svg.axis()
-    .scale(x)
+    .scale(xScale)
     .orient("bottom");
   var yAxis = d3.svg.axis()
-    .scale(y)
+    .scale(yScale)
     .orient("left");
+
+  // add svg containers
   var svg = d3.select(selector).append("svg")
     .attr("width", outerWidth)
     .attr("height", outerHeight)
@@ -45,7 +50,7 @@ var timelineHistogram = function(features, selector){
     .attr("class", "outer")
     .attr("width", innerWidth)
     .attr("height", innerHeight);
-  g.append("rect")
+  var graph = g.append("rect")
     .attr("class", "inner")
     .attr("width", width)
     .attr("height", height);
@@ -55,8 +60,30 @@ var timelineHistogram = function(features, selector){
     .call(xAxis);
   g.append("g")
     .attr("class", "y axis")
-    .attr("transform", "translate(" + width + ",0)")
     .call(yAxis);
+
+
+  var draw = function(){
+    svg.selectAll("rect")
+      .data(features)
+      .enter()
+      .append("rect")
+      .attr({
+        x: function(d, i) {
+          return i* (innerWidth/features.length);
+        },
+        y: function(d) {
+          return innerHeight - yScale(getCount(d));
+        },
+        width: innerWidth / features.length - barMargin,
+        height: function(d) {
+          return yScale(getCount(d));
+        }
+        // fill: function(d) { return "hsl(0, 0%,"+ cScale(d.nkill) + "%)";}
+      });
+  }
+
+  draw();
 
   return{
 
