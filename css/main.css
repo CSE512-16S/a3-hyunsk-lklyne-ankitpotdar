@@ -48,3 +48,9 @@ circle.datamaps-bubble {
 .bar {
     fill: rgba(189,0,38,1);
 }
+
+.brush .extent {
+  stroke: #fff;
+  fill-opacity: .125;
+  shape-rendering: crispEdges;
+}
