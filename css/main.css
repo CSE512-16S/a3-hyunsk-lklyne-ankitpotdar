@@ -14,9 +14,10 @@ h1 {
 
 .map{
   position: relative;
-  height: 400px;
+  height: 360px;
   width: 800px;
   margin: 0 auto;
+    background-color: #f9f9f9;
 }
 
 .timeline{
@@ -62,7 +63,4 @@ circle.datamaps-bubble {
 .controls {
     width: 800px;
     margin: 0 auto;
-}
-
-.slider {
 }
