@@ -9,7 +9,7 @@ function normalizeFeatures(data){
     feature.longitude = val.geometry.coordinates[0];
     feature.depth = val.geometry.coordinates[2];
     feature.mag = val.properties.mag;
-    feature.radius = Math.pow(1.5,val.properties.mag);
+    feature.radius = Math.pow(1.35,val.properties.mag);
     feature.borderWidth = 0;
     feature.fillOpacity = 0.33;
     feature.time =moment(val.properties.time).toDate();
