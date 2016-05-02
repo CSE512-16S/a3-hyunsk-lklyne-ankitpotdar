@@ -2,7 +2,7 @@ var timelineHistogram = function(features, selector){
 
   // setup
   var $el = $(selector);
-  var margin = {top:0, right:10, bottom: 20, left: 15},
+  var margin = {top:0, right:10, bottom: 20, left: 30},
     barMargin = 1,
     padding = {top: 5, right: 20, bottom: 5, left: 20},
     outerWidth = $el.width(),
@@ -110,6 +110,12 @@ var timelineHistogram = function(features, selector){
       .selectAll("rect")
       .attr("y", 0)
       .attr("height", height);
+
+    context.append("text")
+      .attr("class", "axis-label")
+      .attr("text-anchor", "middle")
+      .attr("transform", "translate(-"+ (padding.right + 16) +","+(height/2)+")rotate(-90)")
+      .text("COUNT");
   }
 
   draw();
