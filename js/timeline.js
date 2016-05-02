@@ -63,7 +63,7 @@ var timelineHistogram = function(features, selector){
     .y1(function(d) { return y(getCount(d)); });
 
   var brush = d3.svg.brush()
-    .x(xScale2)
+    .x(xScale)
     .on("brushend", brushEnded);
 
   function brushEnded() {
