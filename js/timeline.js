@@ -14,10 +14,10 @@ var timelineHistogram = function(features, selector){
 
   // add scales
   function getDate(d){
-    return moment(d.dateformat_date, "MM/DD/YYYY").toDate();
+    return d.time;
   }
   function getCount(d){
-    return d.quakeCount;
+    return d.count;
   }
 
   var time_domain = [d3.min(features, getDate), d3.max(features, getDate)];

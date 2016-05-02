@@ -73,9 +73,7 @@ var dataTransformer = {
 
 
 $().ready(function(){
-  d3.json("../assets/histogram/countData-4months-sorted.json", function(err, data){
-    timelineHistogram(data, ".timeline");
-  });
+
   d3.json("../assets/dataset-4months.json", function(err, data){
     var transformedData = dataTransformer.normalizeFeatures(data);
     map.init(transformedData);
