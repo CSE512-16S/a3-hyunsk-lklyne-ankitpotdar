@@ -50,10 +50,6 @@ var timelineHistogram = function(features, selector){
     .attr("class", "outer")
     .attr("width", innerWidth)
     .attr("height", innerHeight);
-  var graph = g.append("rect")
-    .attr("class", "inner")
-    .attr("width", width)
-    .attr("height", height);
   g.append("g")
     .attr("class", "x axis")
     .attr("transform", "translate(0," + height + ")")
