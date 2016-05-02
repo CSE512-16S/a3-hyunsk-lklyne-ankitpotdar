@@ -33,6 +33,10 @@ html, body{
   stroke-dasharray: 3, 4;
 }
 
+circle.datamaps-bubble {
+    fill: rgba(68,40,191,0.2) !important;
+}
+
 
 
 
