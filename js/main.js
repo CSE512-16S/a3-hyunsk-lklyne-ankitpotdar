@@ -40,12 +40,12 @@ var dataTransformer = {
     var filteredData = this._features;
     _.extend(this._currentOpt, options);
 
-    if (this._currentOpt.dateStart != null){
-      filteredData = this.dateFilter(filteredData, this._currentOpt.dateStart, this._currentOpt.dateEnd);
-    }
     if (this._currentOpt.magStart != null){
       filteredData = this.magFilter(filteredData, this._currentOpt.magStart, this._currentOpt.magEnd);
       timeline.update(this.countByDate(filteredData));
+    }
+    if (this._currentOpt.dateStart != null){
+      filteredData = this.dateFilter(filteredData, this._currentOpt.dateStart, this._currentOpt.dateEnd);
     }
     map.update(filteredData);
   },
