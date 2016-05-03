@@ -100,8 +100,6 @@ $().ready(function () {
 
 
 function initControls() {
-  var dateStart = null;
-  var dateEnd = null;
   var magStart = null;
   var magEnd = null;
 
@@ -122,8 +120,6 @@ function initControls() {
     magStart = magSlider.noUiSlider.get()[0];
     magEnd = magSlider.noUiSlider.get()[1];
     dataTransformer.computeAllFilters({
-      dateStart: dateStart,
-      dateEnd: dateEnd,
       magStart: magStart,
       magEnd: magEnd
     });
@@ -136,10 +132,4 @@ function initControls() {
 
 
 }
-
-
-
-
-
-
 
